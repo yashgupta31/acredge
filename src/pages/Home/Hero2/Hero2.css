@@ -1,0 +1,14 @@
+.hero2-feature{
+cursor: pointer;
+}
+
+.hero2-feature:hover .hero2-feature-icon{
+    background-color: #F6BDB5;
+    color: white;
+    transition: 0.5s;
+}
+
+.hero2-feature:not(:hover) .hero2-feature-icon{
+    transition: 0.3s;
+}
+

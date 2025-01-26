@@ -1,0 +1,12 @@
+.each-buy-box{
+    cursor: pointer;
+}
+
+.each-buy-box:hover .each-buy-image{
+    transform: scale(1.1); /* Scales the image to 110% of its size */
+    transition: transform 0.3s ease-in-out;
+}
+
+.each-buy-box:not(:hover) .each-buy-image{
+    transition: 0.3s;
+}
