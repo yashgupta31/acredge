@@ -20,7 +20,7 @@ const Hero = () => {
                     </Box>
                     {/* ------bottom---- */}
                     <Box height={'6.4rem'} bgcolor={'white'} width={'100%'} display={'flex'} flexDirection={isLargerThan450?'row': 'column'} alignItems={'center'} justifyContent={'space-between'} p={'0.4rem 1rem'} borderRadius={isLargerThan450?'0px 12px 12px 12px': '0px 0px 12px 12px'} >
-                        <TextField placeholder='Search product for Buy' size={!isLargerThan550 && 'small'} sx={{ width: isLargerThan450?'70%': '100%' }} />
+                        <TextField placeholder='Search product for Buy' size={!isLargerThan550 && 'small'} sx={{ width: isLargerThan450?'70%': '100%', bgcolor: '#F7F7F7' }} />
                         <Box display={'flex'} >
                         <Box display={'flex'} alignItems={'center'} mr={'0.4rem'} ml={'0.4rem'}>
                             <LuTextSearch style={{fontSize: '1.2rem'}} />

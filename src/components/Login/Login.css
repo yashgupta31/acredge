@@ -1,0 +1,5 @@
+.loginSlider.open{
+    transition: 0.3s;
+    margin-top: 7rem;
+    opacity: 100%;
+}
