@@ -1,6 +1,6 @@
 import { Box, IconButton, Typography, useMediaQuery } from '@mui/material';
-import React, { useState } from 'react';
-import { CiMenuFries } from 'react-icons/ci';
+import React, { useContext, useState } from 'react';
+import { CiDark, CiLight, CiMenuFries } from 'react-icons/ci';
 import { FaInstagram, FaRegUserCircle, FaTwitter } from 'react-icons/fa';
 import './MidNav.css';
 import { RxCross2 } from 'react-icons/rx';
@@ -9,9 +9,11 @@ import { GrFacebookOption } from 'react-icons/gr';
 import { BiLogoLinkedin } from 'react-icons/bi';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Login from '../Login/Login';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const MidNav = () => {
-  const [isOpen, setIsOpen]= useState(false)
+  const { theme, setTheme } = useContext(ThemeContext)
+  const [isOpen, setIsOpen] = useState(false)
   const [isSliderOpen, setIsSliderOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -22,7 +24,7 @@ const MidNav = () => {
     <Box
       height={'4.5rem'}
       width={'100%'}
-      bgcolor={'white'}
+      bgcolor={theme ? 'white' : '#222431'}
       display={'flex'}
       position={'fixed'}
       top={0}
@@ -32,17 +34,22 @@ const MidNav = () => {
       p={'0rem 1rem'}
       boxShadow={'rgba(0, 0, 0, 0.1) 0px 4px 12px'}
     >
-      <CiMenuFries style={{ fontSize: '1.6rem' }} onClick={() => setIsSliderOpen(true)} />
-      {/* <Typography fontSize={'1.3rem'} fontWeight={600}>ACREDGE</Typography> */}
-      <img
+      <CiMenuFries style={{ fontSize: '1.6rem', color: theme? '#282828': 'white' }} onClick={() => setIsSliderOpen(true)} />
+      <Typography fontSize={'1.3rem'} onClick={() => navigate('/')} fontWeight={600} color={theme? '#282828': 'white'}>ACREDGE</Typography>
+      {/* <img
         onClick={() => navigate('/')}
         style={{ width: '6rem' }}
         src="https://acredge.in/_next/image?url=%2Fimages%2Fhome%2Flogo.png&w=384&q=75"
         alt=""
-      />
+      /> */}
 
-      <FaRegUserCircle onClick={()=> setIsOpen(true)} style={{ fontSize: '1.3rem' }} />
 
+    <Box display={'flex'} width={'4rem'} alignItems={'center'} justifyContent={'space-between'}>
+      <Box width={'1.6rem'} height={'1.6rem'} onClick={() => setTheme(!theme)} sx={{ cursor: 'pointer' }} borderRadius={'50%'} bgcolor={'rgba(0,0,0,0.2)'} display={'flex'} alignItems={'center'} justifyContent={'center'}>
+        {theme ? <CiDark /> : <CiLight color='white' />}
+      </Box>
+      <FaRegUserCircle onClick={() => setIsOpen(true)} style={{ fontSize: '1.3rem', color: theme? '#282828': 'white' }} />
+      </Box>
       {/* -----slider------ */}
 
       <Box
@@ -58,7 +65,8 @@ const MidNav = () => {
       >
         <Box
           className={`slider ${isSliderOpen ? 'open' : ''}`}
-          bgcolor={'#F7F7F7'}
+          bgcolor={theme? '#F7F7F7': '#222431'}
+          color={theme?'#282828':'white'}
           width={isLargerThan400 ? '80%' : '94%'}
           height={'100vh'}
           zIndex={99}
@@ -69,7 +77,8 @@ const MidNav = () => {
           onClick={(event) => event.stopPropagation()}
         >
           <Box
-            bgcolor={'#FDF4F3'}
+            bgcolor={theme?'#FDF4F3': '#181722'}
+            color={theme? '#282828': 'white'}
             height={'5rem'}
             display={'flex'}
             alignItems={'center'}

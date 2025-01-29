@@ -1,10 +1,12 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import './Possibilities.css'
 import { CiHeart, CiShare1 } from 'react-icons/ci'
 import { MdOutlineLibraryAdd } from 'react-icons/md'
+import { ThemeContext } from '../../../context/ThemeContext'
 
 const Possibilities = () => {
+    const {theme}= useContext(ThemeContext)
     let data=[
         {
             image: 'https://acredge.in/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Facredge-app-252ab.firebasestorage.app%2FPropertyImages%2F0obLZw8b17Y7nfaP6uRa%2F984smart-world-orchard-project-amenities-features24_742x3924_1734844401887_3c0c3b18-e89e-4f0a-9e8e-e793391d0a6e.jpg&w=640&q=75',
@@ -45,8 +47,8 @@ const Possibilities = () => {
     const isLargerThan350= useMediaQuery('(min-width: 350px)');
   return (
     <Box width={isLargerThan1200?'80%': '98%'} ml={'auto'} mr={'auto'} p={'3rem 0rem'}>
-<Typography fontSize={isLargerThan620?'1.8rem': '1.5rem'} fontWeight={'600'} ml={'1rem'}>Explore Limitless Possibilities</Typography>
-<Typography fontSize={'0.9rem'}ml={'1rem'}>Projects in Gurgaon</Typography>
+<Typography fontSize={isLargerThan620?'1.8rem': '1.5rem'} fontWeight={'600'} ml={'1rem'} color='#EB6753'>Explore Limitless Possibilities</Typography>
+<Typography fontSize={'0.9rem'}ml={'1rem'} color={theme? '#282828': 'white'}>Projects in Gurgaon</Typography>
 {/* --------container-------- */}
 <Box width={'100%'} display={'grid'} gridTemplateColumns={isLargerThan920?'repeat(3, 1fr)': isLargerThan620?'repeat(2, 1fr)': 'repeat(1, 1fr)'} gap={3} mt={isLargerThan620?'4rem': '1rem'}>
     {/* -------each box------- */}

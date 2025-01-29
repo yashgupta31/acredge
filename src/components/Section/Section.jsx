@@ -1,8 +1,10 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import './Section.css'
+import { ThemeContext } from '../../context/ThemeContext'
 
 const Section = ({data, title}) => {
+    const {theme}= useContext(ThemeContext);
    
     const isLargerThan1200= useMediaQuery('(min-width: 1200px)')
     const isLargerThan1000= useMediaQuery('(min-width: 1000px)')
@@ -10,9 +12,9 @@ const Section = ({data, title}) => {
     const isLargerThan550= useMediaQuery('(min-width: 550px)')
     const isLargerThan350= useMediaQuery('(min-width: 350px)')
     return (
-        <Box width={isLargerThan1000?'80%': '97%'} ml={'auto'} mr={'auto'} mt={isLargerThan1000?'4rem': '1rem'} mb={isLargerThan1000?'4rem': '1rem'} >
-            <Typography fontSize={isLargerThan550?'1.8rem': isLargerThan350?'1.4rem': '1.2rem'} textAlign={!isLargerThan350 && 'center'} fontWeight={'600'}>{title}</Typography>
-            <Typography fontSize={'0.9rem'} textAlign={!isLargerThan350 && 'center'}>Projects in Gurgaon</Typography>
+        <Box width={isLargerThan1000?'80%': '97%'} ml={'auto'} color={theme?'#282828':'white'} mr={'auto'} mt={isLargerThan1000?'4rem': '1rem'} mb={isLargerThan1000?'4rem': '1rem'} >
+            <Typography fontSize={isLargerThan550?'1.8rem': isLargerThan350?'1.4rem': '1.2rem'} color='#EB6753' textAlign={!isLargerThan350 && 'center'} fontWeight={'600'}>{title}</Typography>
+            <Typography fontSize={'0.9rem'} textAlign={!isLargerThan350 && 'center'} >Projects in Gurgaon</Typography>
             {/* -----container------- */}
             <Box  display={'flex'} height={'21rem'} mt={isLargerThan1000?'3rem': '1rem'}  sx={{overflowX: 'auto', '&::-webkit-scrollbar': { display: 'none' }}} p={'1rem 0rem'}  >
                 {/* -----------each box-------- */}

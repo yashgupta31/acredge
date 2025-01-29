@@ -1,13 +1,16 @@
 import { Box, Button, Checkbox, TextField, Typography, useMediaQuery } from '@mui/material'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Slider, { SliderThumb } from '@mui/material/Slider';
 import { BiSolidPhoneCall, BiUndo } from 'react-icons/bi';
 import { CiHeart, CiShare2 } from 'react-icons/ci';
 import { PiWhatsappLogoDuotone } from 'react-icons/pi';
 import './Buy.css';
+import { ThemeContext } from '../../context/ThemeContext';
 
 const Buy = ({title}) => {
+    const {theme}= useContext(ThemeContext)
     const [isOpen, setIsOpen]= useState(false);
+
     const data=[
         {
             image: 'https://acredge.in/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Facredge-app-252ab.firebasestorage.app%2FPropertyImages%2F0obLZw8b17Y7nfaP6uRa%2F984smart-world-orchard-project-amenities-features24_742x3924_1734844401887_3c0c3b18-e89e-4f0a-9e8e-e793391d0a6e.jpg&w=384&q=75',
@@ -63,8 +66,8 @@ const Buy = ({title}) => {
     <Box p={isLargerThan1200?'1rem 9rem': '1rem 1rem'} pt={'8rem'}>
         
         <Box mb={'3rem'}>
-            <Typography fontSize={'1.8rem'}>Homes for {title}</Typography>
-            <Typography>HomeFor/ {title}</Typography>
+            <Typography fontSize={'1.8rem'} color={theme? '#282828':'white'}>Homes for <span style={{color: '#EB6753'}}>{title}</span></Typography>
+            <Typography color={theme? '#282828': 'white'}>HomeFor/ {title}</Typography>
         </Box>
         {!isLargerThan900 && <Button onClick={()=> setIsOpen(!isOpen)} variant={isOpen?'contained': 'outlined'}  sx={{mb: '1rem', color: isOpen?'white':'#EB6753', border: '1px solid #EB6753', bgcolor: isOpen && '#EB6753'}}>Filter</Button>}
         
@@ -72,10 +75,27 @@ const Buy = ({title}) => {
             
             {/* -------left----- */}
  {        ( isLargerThan900 || isOpen ) &&
-   <Box bgcolor={'white'} width={isLargerThan900?'30%': '100%'} position={!isLargerThan900 && 'absolute'} zIndex={!isLargerThan900 && 98} height={'60rem'} display={'flex'} flexDirection={'column'} p={'1.4rem'} borderRadius={'12px'} boxShadow={'rgba(0, 0, 0, 0.1) 0px 4px 12px'}>
+   <Box bgcolor={theme?'white':'#181722'} color={theme?'#282828':'white'} width={isLargerThan900?'30%': '100%'} position={!isLargerThan900 && 'absolute'} zIndex={!isLargerThan900 && 98} height={'60rem'} display={'flex'} flexDirection={'column'} p={'1.4rem'} borderRadius={'12px'} boxShadow={'rgba(0, 0, 0, 0.1) 0px 4px 12px'}>
                 <Box mb={'2rem'}>
                 <Typography mb={'1rem'}>Find your home</Typography>
-                <TextField placeholder='What are you looking for?' sx={{width: '100%'}}/>
+                <TextField placeholder='What are you looking for?' sx={{width: '100%', "& .MuiInputBase-input": {
+      color: "white", // Text color
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor: theme?'#282828':"white", // Default border color
+      },
+      "&:hover fieldset": {
+        borderColor: theme?'#282828':"white", // Border color on hover
+      },
+      "&.Mui-focused fieldset": {
+        borderColor:  theme?'#282828':"white", // Border color when focused
+      },
+    },
+    "& .MuiInputBase-input::placeholder": {
+      color:  theme?'#282828':"white", // Placeholder text color
+      opacity: 1, // Ensures placeholder is visible
+    }}}/>
                 </Box>
                 
                 {/* --filter1-- */}
@@ -99,16 +119,67 @@ const Buy = ({title}) => {
                     <Typography>Price Range</Typography>
                     <Slider />
                     <Box display={'flex'} alignItems={'center'} justifyContent={'space-between'} mt={'0.6rem'}>
-                        <TextField value={'₹10.00 K'} sx={{width: '45%'}} disabled/>
+                        <TextField value={'₹10.00 K'} sx={{width: '45%', "& .MuiInputBase-input": {
+      color:  theme?'#282828':"white", // Text color
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor:  theme?'#282828':"white", // Default border color
+      },
+      "&:hover fieldset": {
+        borderColor:  theme?'#282828':"white", // Border color on hover
+      },
+      "&.Mui-focused fieldset": {
+        borderColor:  theme?'#282828':"white", // Border color when focused
+      },
+    },
+    "& .MuiInputBase-input::placeholder": {
+      color:  theme?'#282828':"white", // Placeholder text color
+      opacity: 1, // Ensures placeholder is visible
+    }, ":disabled": true}}/>
                         <Typography fontSize={'1.3rem'}>-</Typography>
-                        <TextField value={'₹10.00 K'} sx={{width: '45%'}} disabled/>
+                        <TextField value={'₹10.00 K'} sx={{width: '45%', "& .MuiInputBase-input": {
+      color:  theme?'#282828':"white", // Text color
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor:  theme?'#282828':"white", // Default border color
+      },
+      "&:hover fieldset": {
+        borderColor:  theme?'#282828':"white", // Border color on hover
+      },
+      "&.Mui-focused fieldset": {
+        borderColor:  theme?'#282828':"white", // Border color when focused
+      },
+    },
+    "& .MuiInputBase-input::placeholder": {
+      color:  theme?'#282828':"white", // Placeholder text color
+      opacity: 1, // Ensures placeholder is visible
+    }, ":disabled": true}}/>
                     </Box>
                 </Box>
 
                 {/* ------Location-------- */}
                 <Box mb={'2rem'}>
                     <Typography  mb={'1rem'}>Location</Typography>
-                    <TextField placeholder='Enter a location' sx={{width: '100%'}} />
+                    <TextField placeholder='Enter a location' sx={{width: '100%', "& .MuiInputBase-input": {
+      color: "white", // Text color
+    },
+    "& .MuiOutlinedInput-root": {
+      "& fieldset": {
+        borderColor:  theme?'#282828':"white", // Default border color
+      },
+      "&:hover fieldset": {
+        borderColor:  theme?'#282828':"white", // Border color on hover
+      },
+      "&.Mui-focused fieldset": {
+        borderColor:  theme?'#282828':"white", // Border color when focused
+      },
+    },
+    "& .MuiInputBase-input::placeholder": {
+      color:  theme?'#282828':"white", // Placeholder text color
+      opacity: 1, // Ensures placeholder is visible
+    }}} />
                 </Box>
                 <Button variant='contained' size='large' sx={{width: '100%', height: '3rem', borderRadius: '5px', bgcolor: '#EB6753'}}>Search</Button>
             <Typography display={'flex'} alignItems={'center'} mt={'1rem'}><BiUndo style={{marginRight: '0.3rem', fontSize: '1.1rem'}} />Reset all filters</Typography>
@@ -127,7 +198,7 @@ const Buy = ({title}) => {
                                 <Typography position={'absolute'} bottom={'1rem'} left={'1rem'} bgcolor={'white'} p={'0.2rem 0.5rem'} borderRadius={'4px'}>₹2.65 Cr</Typography>
                                 </Box>
                                 {/* ---each bottom----- */}
-                                <Box  p={'1rem'}>
+                                <Box  p={'1rem'} bgcolor={theme?'#F7F7F7':'#181722'} color={theme?'#282828':'white'}>
                                 <Box>
                                     <Typography fontWeight={600}>Smart world, orchade</Typography>
                                     <Typography>Sector1 Gurugram, Haryana</Typography>
@@ -147,8 +218,11 @@ const Buy = ({title}) => {
                                 </Box>
             
                                 <Box width={'100%'} display={'flex'} justifyContent={'space-between'}>
-                                    <Box p={'0.4rem'} width={'7rem'} fontSize={'1.1rem'} display={'flex'} alignItems={'center'} justifyContent={'space-evenly'} borderRadius={'5px'} border={'1px solid black'}><PiWhatsappLogoDuotone style={{fontSize: '1.5rem'}} /> Whatsapp</Box>
-                                    <Box p={'0.4rem'} width={'7rem'} fontSize={'1.1rem'} display={'flex'} alignItems={'center'} justifyContent={'space-evenly'} borderRadius={'5px'} border={'1px solid black'}><BiSolidPhoneCall style={{fontSize: '1.5rem'}} /> Whatsapp</Box>
+                                    <Box p={'0.4rem'} width={'7rem'} fontSize={'1.1rem'} display={'flex'} alignItems={'center'} justifyContent={'space-evenly'} borderRadius={'5px'} border={'1px solid black'}>
+                                        {/* <PiWhatsappLogoDuotone style={{fontSize: '1.5rem'}} />  */}
+                                    <img style={{height: '1.5rem'}} src="http://pngimg.com/uploads/whatsapp/whatsapp_PNG13.png" alt="" />
+                                    Whatsapp</Box>
+                                    <Box p={'0.4rem'} width={'7rem'} fontSize={'1.1rem'} display={'flex'} alignItems={'center'} justifyContent={'space-evenly'} borderRadius={'5px'} border={'1px solid black'}><BiSolidPhoneCall style={{fontSize: '1.5rem'}} /> Connect</Box>
             
                                 </Box>
             

@@ -1,16 +1,17 @@
 import { Box, Typography, useMediaQuery } from '@mui/material'
-import React from 'react'
+import React, { useContext } from 'react'
 import { BiLogoLinkedin } from 'react-icons/bi'
 import { FaInstagram, FaTwitter } from 'react-icons/fa'
 import { GrFacebookOption } from 'react-icons/gr'
+import { ThemeContext } from '../../context/ThemeContext'
 
 const Footer = () => {
-
+    const {theme}= useContext(ThemeContext);
     const isLargerThan1150= useMediaQuery('(min-width: 1150px)');
     const isLargerThan900= useMediaQuery('(min-width: 900px)');
     const isLargerThan400= useMediaQuery('(min-width: 400px)');
   return (
-    <Box pt={'5rem'} bgcolor={'#F7F7F7'} >
+    <Box pt={'5rem'} bgcolor={!theme && '#1F1D2B'} color={theme?'#282828':'#AAAAAA'}>
     <Box height={isLargerThan900?'35vh': 'auto'}  display={'flex'} flexDirection={isLargerThan900?'row': 'column'}  justifyContent={'space-between'} width={isLargerThan1150?'80%': '95%'} ml={'auto'}mr={'auto'}>
         <Box width={isLargerThan400?'22rem': '100%'} height={'85%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
             <img style={{width: '8rem'}} src="https://acredge.in/_next/image?url=%2Fimages%2Fhome%2Flogo.png&w=384&q=75" alt="" />
